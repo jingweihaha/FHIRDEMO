@@ -1,0 +1,23 @@
+<div class="mydiv">
+  <table *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    <!-- med Column -->
+    <ng-container matColumnDef="med">
+      <th mat-header-cell *matHeaderCellDef> MED </th>
+      <td mat-cell *matCellDef="let element"> {{element.med}} </td>
+    </ng-container>
+    <!-- dosage Column -->
+    <ng-container matColumnDef="dosage">
+      <th mat-header-cell *matHeaderCellDef> DOSAGE </th>
+      <td mat-cell *matCellDef="let element"> {{element.dosage}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table> 
+</div>

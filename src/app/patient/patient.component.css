@@ -1,0 +1,64 @@
+.mat-row {
+    height: auto;
+  }
+  
+.mat-cell {
+    padding: 1vw !important;
+  }
+
+/* .mat-header-cell { 
+       text-align: center; 
+  } */
+
+.matHeaderCellDef {
+    text-align: center;
+  }
+
+th.mat-header-cell {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center !important;
+    /* padding: 2vw !important; */
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    padding-right: 1vw !important ; 
+    padding-left: 1vw !important;
+  }
+
+/* .mat-cell {
+    text-align: center;
+    border: 1px solid #ddd;
+  } */
+
+table {
+    margin: auto;
+    /*width: 100vw;*/
+}
+
+.mydiv {
+  margin: 5vh;
+  /* border: 2px solid red; */
+}
+
+.mat-row:nth-child(even){
+  background-color: white;
+  }
+
+.mat-row:nth-child(odd){
+  background-color:#f2f2f2;
+  }
+
+.mat-cell, .mat-header-cell{
+  text-align: center;
+  /* border: 1px solid grey; */
+  border: 1px solid #ddd;
+  min-height: 48px;
+  }
+
+ .mat-header-cell{
+  padding: 2vw;
+ }
+
+  .mat-row:hover {
+    background-color: #ddd;
+ }

@@ -1,0 +1,19 @@
+<div  >
+  <mat-card class="example-card make-it-slow">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{id}}</mat-card-title>
+      <mat-card-subtitle>{{name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        This Patient is {{gender}}, whose birthday is {{dob}}.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button class="btn btn-outline-success my-2 my-sm-0 myhover" (click)="goBack()"  >Back</button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>
