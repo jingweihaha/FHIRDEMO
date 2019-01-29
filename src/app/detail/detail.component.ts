@@ -21,7 +21,7 @@ export class DetailComponent implements OnInit {
   constructor(private zone: NgZone, private service: SharedService, private router: Router, private cd: ChangeDetectorRef) {
     if (this.service.patient_detail) {
       this.patient_detail = this.service.patient_detail;
-      console.log("patient_detail is ", this.patient_detail);
+       //console.log("patient_detail is ", this.patient_detail);
       this.id = this.patient_detail.id;
       this.name = this.patient_detail.name;
       this.gender = this.patient_detail.gender;

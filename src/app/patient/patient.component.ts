@@ -19,7 +19,7 @@ export class PatientComponent implements OnInit {
   // patient_table: any;
 
   constructor(private service: SharedService, private router: Router, private http: HttpClient, private ref: ChangeDetectorRef) {
-    console.log("patient component constructor");
+     //console.log("patient component constructor");
 
     if ((this.service.ds) && (this.service.ds.length > 0)) {
       this.refreshDS();
@@ -37,7 +37,7 @@ export class PatientComponent implements OnInit {
   private refreshDS() {
     // this.patient_table = true;
     this.ds = this.service.ds;
-    console.log("ds is,", this.ds);
+     //console.log("ds is,", this.ds);
     this.displayedColumns = ['id', 'name', 'gender', 'birthDate', "address"];
     this.dataSource = new MatTableDataSource<{}>(this.ds);
     //this.ref.detectChanges();
@@ -48,7 +48,7 @@ export class PatientComponent implements OnInit {
   }
 
   getRecord(a: any) {
-    console.log("a is ", a);
+     //console.log("a is ", a);
     this.dataSource = null;
 
     let params = new HttpParams().set('patient', a.id).set('_pretty', 'true');
@@ -60,14 +60,14 @@ export class PatientComponent implements OnInit {
       //this.service.patient_detail = a;
       //this.service.patient_detail = res;
       this.service.encounter = res;
-      console.log("Encounter is ", res);
+       //console.log("Encounter is ", res);
       //this.router.navigate(['/tables']);
     },
       err => {
-        console.log("Encounter patient component err is ", err);
+         //console.log("Encounter patient component err is ", err);
       },
       () => {
-        console.log("Encounter finally patient component");
+         //console.log("Encounter finally patient component");
       }
     )
 
@@ -79,14 +79,14 @@ export class PatientComponent implements OnInit {
       //this.service.patient_detail = a;
       //this.service.patient_detail = res;
       this.service.condition = res;
-      console.log("Condition is ", res);
+       //console.log("Condition is ", res);
       //this.router.navigate(['/tables']);
     },
       err => {
-        console.log("Condition patient component err is ", err);
+         //console.log("Condition patient component err is ", err);
       },
       () => {
-        console.log("Condition finally patient component");
+         //console.log("Condition finally patient component");
       }
     )
 
@@ -94,13 +94,13 @@ export class PatientComponent implements OnInit {
     let url_procedure = "http://hapi.fhir.org/baseDstu3/Procedure";
     this.http.get(url_procedure, { params: params }).subscribe(res => {
       this.service.procedure = res;
-      console.log("Procedure is ", res);
+       //console.log("Procedure is ", res);
     },
       err => {
-        console.log("Procedure patient component err is ", err);
+         //console.log("Procedure patient component err is ", err);
       },
       () => {
-        console.log("Procedure finally patient component");
+         //console.log("Procedure finally patient component");
       }
     )
 
@@ -111,14 +111,14 @@ export class PatientComponent implements OnInit {
       //this.service.patient_detail = a;
       //this.service.patient_detail = res;
       this.service.appointment = res;
-      console.log("Appointment is ", res);
+       //console.log("Appointment is ", res);
       //this.router.navigate(['/tables']);
     },
       err => {
-        console.log("Appointment patient component err is ", err);
+         //console.log("Appointment patient component err is ", err);
       },
       () => {
-        console.log("Appointment finally patient component");
+         //console.log("Appointment finally patient component");
       }
     )
 
@@ -129,15 +129,15 @@ export class PatientComponent implements OnInit {
       //this.service.patient_detail = a;
       //this.service.patient_detail = res;
       this.service.allergyIntolerance = res;
-      console.log("AllergyIntolerance is ", res);
+       //console.log("AllergyIntolerance is ", res);
       //this.router.navigate(['/tables']);
 
     },
       err => {
-        console.log("AllergyIntolerance patient component err is ", err);
+         //console.log("AllergyIntolerance patient component err is ", err);
       },
       () => {
-        console.log("AllergyIntolerance finally patient component");
+         //console.log("AllergyIntolerance finally patient component");
       }
     )
 
@@ -149,14 +149,14 @@ export class PatientComponent implements OnInit {
       //this.service.patient_detail = a;
       //this.service.patient_detail = res;
       this.service.medicationstatement = res;
-      console.log("medicationstatement is", res);
+       //console.log("medicationstatement is", res);
       //this.router.navigate(['/tables']);
     },
       err => {
-        console.log("MedicationStatement patient component err is ", err);
+         //console.log("MedicationStatement patient component err is ", err);
       },
       () => {
-        console.log("MedicationStatement finally patient component");
+         //console.log("MedicationStatement finally patient component");
         this.router.navigate(['/tables']);
       }
     )
