@@ -1,3 +1,21 @@
-<p>
-  allergyintolerance works!
-</p>
+<div class="mydiv">
+  <table *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- clinicalStatus Column -->
+    <ng-container matColumnDef="clinicalStatus">
+      <th mat-header-cell *matHeaderCellDef> clinicalStatus </th>
+      <td mat-cell *matCellDef="let element"> {{element.clinicalStatus}} </td>
+    </ng-container>
+    <!-- display Column -->
+    <ng-container matColumnDef="display">
+      <th mat-header-cell *matHeaderCellDef> display </th>
+      <td mat-cell *matCellDef="let element"> {{element.display}} </td>
+    </ng-container>
+    <!-- reaction Column -->
+    <ng-container matColumnDef="reaction">
+      <th mat-header-cell *matHeaderCellDef> reaction </th>
+      <td mat-cell *matCellDef="let element"> {{element.reaction}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

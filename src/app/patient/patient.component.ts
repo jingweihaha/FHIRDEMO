@@ -93,13 +93,8 @@ export class PatientComponent implements OnInit {
 
     let url_procedure = "http://hapi.fhir.org/baseDstu3/Procedure";
     this.http.get(url_procedure, { params: params }).subscribe(res => {
-      //this.router.navigate(['/detail', {elem: JSON.stringify(a)}])
-      //this.service.mysub.next({ "patient_detail": a })
-      //this.service.patient_detail = a;
-      //this.service.patient_detail = res;
       this.service.procedure = res;
       console.log("Procedure is ", res);
-      //this.router.navigate(['/tables']);
     },
       err => {
         console.log("Procedure patient component err is ", err);

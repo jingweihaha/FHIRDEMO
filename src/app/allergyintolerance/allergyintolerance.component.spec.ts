@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllergyintoleranceComponent } from './allergyintolerance.component';
+import { AllergyintoleranceComponent } from './allergyIntolerance.component';
 
 describe('AllergyintoleranceComponent', () => {
   let component: AllergyintoleranceComponent;
