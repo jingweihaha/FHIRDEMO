@@ -23,6 +23,16 @@ export class SearchBarComponent implements OnInit {
 
   searchPatientByName() {
     this.service.ds = [];
+    
+    //public flag = true;
+    //public ds = [];
+    this.service.patient_detail = null;
+    this.service.medicationstatement = null;
+    this.service.encounter = null;
+    this.service.condition = null;
+    this.service.procedure = null;
+    this.service.appointment = null;
+    this.service.allergyIntolerance = null;
 
     let params = new HttpParams().set('name', this.patient_name).set('_pretty', 'true');
     this.http.get('http://hapi.fhir.org/baseDstu3/Patient', { params: params }).subscribe(res => {
