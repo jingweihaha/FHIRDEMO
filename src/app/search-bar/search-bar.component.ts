@@ -47,7 +47,7 @@ export class SearchBarComponent implements OnInit {
       this.getDataSourceFromEntry(res["entry"]);
 
 
-      this.service.ds_detactor.next({ "ds_detactor": "changed" });
+      this.service.ds_detector.next({ "ds_detector": "changed" });
       console.log("res is " + res + " service ds is " + this.service.ds + " searchbar component");
       this.router.navigate(["/patient"]);
     },

@@ -16,6 +16,11 @@ import { HeaderComponent } from './header/header.component';
 import { MedicationstatementComponent } from './medicationstatement/medicationstatement.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { TablesComponent } from './tables/tables.component';
+import { EncounterComponent } from './encounter/encounter.component';
+import { ConditionComponent } from './condition/condition.component';
+import { ProcedureComponent } from './procedure/procedure.component';
+import { AppointmentComponent } from './appointment/appointment.component';
+import { AllergyintoleranceComponent } from './allergyintolerance/allergyintolerance.component';
 
 
 @NgModule({
@@ -26,7 +31,12 @@ import { TablesComponent } from './tables/tables.component';
     DetailComponent,
     HeaderComponent,
     MedicationstatementComponent,
-    TablesComponent
+    TablesComponent,
+    EncounterComponent,
+    ConditionComponent,
+    ProcedureComponent,
+    AppointmentComponent,
+    AllergyintoleranceComponent
   ],
   imports: [
     BrowserModule,

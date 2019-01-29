@@ -15,18 +15,18 @@ export class MedicationstatementComponent implements OnInit {
   displayedColumns: any;
 
   constructor(private service: SharedService, private cd: ChangeDetectorRef) {
-    debugger;
+    //debugger;
     if (this.service.medicationstatement) {
-      debugger;
+      //debugger;
       let tmp_medicationstatements = this.service.medicationstatement.entry;
-      console.log(tmp_medicationstatements);
+      //console.log(tmp_medicationstatements);
       for (let i = 0; i < tmp_medicationstatements.length; i++) {
-        debugger;
+        //debugger;
         let obj = {};
         try {
           let dosage = tmp_medicationstatements[i]["resource"]["dosage"][0];
           let text = dosage["text"];
-          console.log("text is ", text);
+          //console.log("text is ", text);
           obj["dosage"] = text;
         } catch (error) {
           obj["dosage"] = "N/A";
@@ -39,20 +39,20 @@ export class MedicationstatementComponent implements OnInit {
           else if (tmp_medicationstatements[i]["resource"]["medicationReference"]["display"]) {
             med = tmp_medicationstatements[i]["resource"]["medicationReference"]["display"];
           }
-          console.log("med is ", med);
-          console.log("end of loop medicationstatement component");
+          //console.log("med is ", med);
+          //console.log("end of loop medicationstatement component");
           obj["med"] = med["text"];
         } catch (error) {
           obj["med"] = "N/A"
         }
         this.medicationstatement.push(obj);
       }
-      console.log("medicationstatement is medicationstatement component ", tmp_medicationstatements);
+      //console.log("medicationstatement is medicationstatement component ", tmp_medicationstatements);
       this.cd.markForCheck();
       
-      debugger;
+      //debugger;
 
-      this.displayedColumns = ["dosage", "med"];
+      this.displayedColumns = ["med", "dosage"];
       this.dataSource = new MatTableDataSource<{}>(this.medicationstatement);
     }
   }
