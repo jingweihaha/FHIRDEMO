@@ -39,8 +39,8 @@ export class ConditionComponent implements OnInit {
           let clinicalstatus;
           //debugger;
           try {
-            if (tmp_condition[i]["resource"]["period"]["onsetDateTime"]) {
-              onset = tmp_condition[i]["resource"]["period"]["onsetDateTime"];
+            if (tmp_condition[i]["resource"]["onsetDateTime"]) {
+              onset = tmp_condition[i]["resource"]["onsetDateTime"];
                //console.log("onset is", onset);
             }
              //console.log("onset is ", onset);
@@ -50,9 +50,12 @@ export class ConditionComponent implements OnInit {
             obj["onset"] = "N/A";
           }
 
+          // "onsetDateTime": "1941-11-05T13:43:38-05:00",
+          // "assertedDate": "1941-11-05T13:43:38-05:00"
+
           try {
-            if (tmp_condition[i]["resource"]["period"]["abatementDatetime"]) {
-              abatement = tmp_condition[i]["resource"]["period"]["abatementDatetime"];
+            if (tmp_condition[i]["resource"]["abatementDatetime"]) {
+              abatement = tmp_condition[i]["resource"]["abatementDatetime"];
                //console.log("abate is", abatement);
             }
             obj["abatement"] = abatement!= null?abatement:"N/A";

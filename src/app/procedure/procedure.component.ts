@@ -44,10 +44,12 @@ export class ProcedureComponent {
             obj["end"] = "N/A";
           }
           
+          debugger;
           let reasonReference;
           try {
+            debugger;
             if (tmp_procedure[i]["resource"]["reasonReference"]) {
-              reasonReference = tmp_procedure[i]["resource"]["reasonReference"]["display"];
+              reasonReference = tmp_procedure[i]["resource"]["reasonReference"][0]["display"];
             }
 
             obj["reasonReference"] = reasonReference;
