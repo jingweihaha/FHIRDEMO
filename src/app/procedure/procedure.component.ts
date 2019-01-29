@@ -25,28 +25,49 @@ export class ProcedureComponent {
           debugger;
           let obj = {};
           try {
-            let dosage = tmp_procedure[i]["resource"]["dosage"][0];
-            let text = dosage["text"];
+            let start = tmp_procedure[i]["resource"]["performedPeriod"]["start"];
+            //let end = tmp_procedure[i]["resource"]["performedPeriod"]["end"];
+            //let text = dosage["text"];
             // ("text is ", text);
-            obj["dosage"] = text;
+            obj["start"] = start;
           } catch (error) {
-            obj["dosage"] = "N/A";
+            obj["start"] = "N/A";
           }
-          let med;
+
           try {
-            if (tmp_procedure[i]["resource"]["medicationCodeableConcept"]) {
-              med = tmp_procedure[i]["resource"]["medicationCodeableConcept"];
-            }
-            else if (tmp_procedure[i]["resource"]["medicationReference"]["display"]) {
-              med = tmp_procedure[i]["resource"]["medicationReference"]["display"];
-            }
-            obj["med"] = med["text"];
+            //let start = tmp_procedure[i]["resource"]["performedPeriod"]["start"];
+            let end = tmp_procedure[i]["resource"]["performedPeriod"]["end"];
+            //let text = dosage["text"];
+            // ("text is ", text);
+            obj["end"] = end;
           } catch (error) {
-            obj["med"] = "N/A"
+            obj["end"] = "N/A";
+          }
+          
+          let reasonReference;
+          try {
+            if (tmp_procedure[i]["resource"]["reasonReference"]) {
+              reasonReference = tmp_procedure[i]["resource"]["reasonReference"]["display"];
+            }
+
+            obj["reasonReference"] = reasonReference;
+          } catch (error) {
+            obj["reasonReference"] = "N/A"
+          }
+
+          let procedure;
+          try {
+            if (tmp_procedure[i]["resource"]["code"]) {
+              procedure = tmp_procedure[i]["resource"]["code"]["text"];
+            }
+
+            obj["procedure"] = procedure;
+          } catch (error) {
+            obj["procedure"] = "N/A"
           }
           this.procedure.push(obj);
         }      
-        this.displayedColumns = ["med", "dosage"];
+        this.displayedColumns = ["start", "end", "reasonReference", "procedure"];
         this.dataSource = new MatTableDataSource<{}>(this.procedure);
       }
     }

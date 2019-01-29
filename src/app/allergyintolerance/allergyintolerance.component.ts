@@ -39,15 +39,12 @@ export class AllergyintoleranceComponent implements OnInit {
           } catch (error) {
             obj["clinicalStatus"] = "N/A";
           }
-
           try {
             if (tmp_allergyIntolerance[i]["resource"]["code"]["coding"][0]["display"]) {
               display = tmp_allergyIntolerance[i]["resource"]["code"]["coding"][0]["display"];
-               //console.log("display is", display);
             }
             obj["display"] = display != null ? display : "N/A";
-             //console.log("display is", display);
-             //console.log("display of loop allergyIntolerance component");
+
           } catch (error) {
             obj["display"] = "N/A";
           }
@@ -56,14 +53,9 @@ export class AllergyintoleranceComponent implements OnInit {
             if (tmp_allergyIntolerance[i]["resource"]["reaction"][0]["manifestation"]) {
               reaction = tmp_allergyIntolerance[i]["resource"]["reaction"][0]["manifestation"];
             }
-
             let sb = "";
-
             for (let i = 0; i < reaction.length; i++) {
-              sb+=reaction[i]["coding"][0]["display"] + " ";
-              //debugger;
-              console.log("sb is", sb);
-
+              sb+=reaction[i]["coding"][0]["display"] + " ";              
             }
             obj["reaction"] = sb != null ? sb : "N/A";
              //console.log("reaction is", sb);
@@ -71,13 +63,9 @@ export class AllergyintoleranceComponent implements OnInit {
           } catch (error) {
             obj["reaction"] = "N/A";
           }
-          //debugger;
           this.allergyIntolerance.push(obj);
         }
-
-         //console.log("allergyIntolerance is allergyIntolerance component ", tmp_allergyIntolerance);
         this.cd.markForCheck();
-        //debugger;
         this.displayedColumns = ["clinicalStatus", "display", "reaction"];
         this.dataSource = new MatTableDataSource<{}>(this.allergyIntolerance);
       }
