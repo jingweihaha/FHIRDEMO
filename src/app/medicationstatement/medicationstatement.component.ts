@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared.service';
 import { MatTableDataSource } from '@angular/material';
+import { MatTabChangeEvent } from '@angular/material';
 
 @Component({
   selector: 'app-medicationstatement',
@@ -33,25 +34,22 @@ export class MedicationstatementComponent implements OnInit {
         }
         let med;
         try {
+          debugger;
           if (tmp_medicationstatements[i]["resource"]["medicationCodeableConcept"]) {
             med = tmp_medicationstatements[i]["resource"]["medicationCodeableConcept"];
+            obj["med"] = med["text"] != ""?med["text"]:"N/A";
+
           }
           else if (tmp_medicationstatements[i]["resource"]["medicationReference"]["display"]) {
             med = tmp_medicationstatements[i]["resource"]["medicationReference"]["display"];
-          }
-          // ("med is ", med);
-          // ("end of loop medicationstatement component");
-          obj["med"] = med["text"];
+            obj["med"] = med != ""?med:"N/A";
+          }          
         } catch (error) {
           obj["med"] = "N/A"
         }
         this.medicationstatement.push(obj);
       }
-      // ("medicationstatement is medicationstatement component ", tmp_medicationstatements);
       this.cd.markForCheck();
-      
-      ////debugger;
-
       this.displayedColumns = ["med", "dosage"];
       this.dataSource = new MatTableDataSource<{}>(this.medicationstatement);
     }
@@ -60,5 +58,4 @@ export class MedicationstatementComponent implements OnInit {
   ngOnInit() {
 
   }
-
 }

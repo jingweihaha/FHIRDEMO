@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatTabChangeEvent} from '@angular/material';
 
 @Component({
   selector: 'app-tables',
@@ -10,6 +11,12 @@ export class TablesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onLinkClick(a: MatTabChangeEvent) {
+    console.log('event => ', a);
+    console.log('index => ', a.index);
+    console.log('tab => ', a.tab);
   }
 
 }
