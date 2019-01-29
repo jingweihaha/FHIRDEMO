@@ -12,6 +12,7 @@ export class ProcedureComponent {
   procedure =[];
   dataSource: MatTableDataSource<{}>;
   displayedColumns: any;
+  nodata: boolean;
 
   constructor(private service: SharedService) {
     ////debugger;
@@ -20,7 +21,7 @@ export class ProcedureComponent {
       let tmp_procedure = this.service.procedure.entry;
  
       if(tmp_procedure && tmp_procedure.length>0){
-      
+        this.nodata = false;
         for (let i = 0; i < tmp_procedure.length; i++) {
           debugger;
           let obj = {};
@@ -71,6 +72,10 @@ export class ProcedureComponent {
         }      
         this.displayedColumns = ["start", "end", "reasonReference", "procedure"];
         this.dataSource = new MatTableDataSource<{}>(this.procedure);
+      }
+
+      else{
+        this.nodata = true;
       }
     }
   }
