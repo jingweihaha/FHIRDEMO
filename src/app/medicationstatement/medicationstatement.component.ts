@@ -1,8 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
 import { SharedService } from '../shared.service';
 import { MatTableDataSource } from '@angular/material';
-import { MatTabChangeEvent } from '@angular/material';
 
 @Component({
   selector: 'app-medicationstatement',
@@ -16,18 +14,13 @@ export class MedicationstatementComponent implements OnInit {
   displayedColumns: any;
 
   constructor(private service: SharedService, private cd: ChangeDetectorRef) {
-    ////debugger;
     if (this.service.medicationstatement && this.service.medicationstatement.entry && (this.service.medicationstatement.entry.length > 0)) {
-      ////debugger;
       let tmp_medicationstatements = this.service.medicationstatement.entry;
-      // (tmp_medicationstatements);
       for (let i = 0; i < tmp_medicationstatements.length; i++) {
-        ////debugger;
         let obj = {};
         try {
           let dosage = tmp_medicationstatements[i]["resource"]["dosage"][0];
           let text = dosage["text"];
-          // ("text is ", text);
           obj["dosage"] = text;
         } catch (error) {
           obj["dosage"] = "N/A";

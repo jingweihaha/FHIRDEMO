@@ -25,42 +25,18 @@ export class SearchBarComponent implements OnInit {
     this.service.ds = [];
 
     let params = new HttpParams().set('name', this.patient_name).set('_pretty', 'true');
-
-    // this.http.get('http://localhost:3001/api/patient', { params: params }).subscribe(res => {
-    //    //console.log(res);
-    //   //this.service.mysub.next({"ds":res});
-    //   this.service.ds = res;     
-    //   this.service.ds_detactor.next({"ds_detactor":"changed"});
-    //    //console.log("res is "+ res + " service ds is " + this.service.ds + " searchbar component");
-    //   this.router.navigate(["/patient"]);
-    // },
-    // err=>{
-    //    //console.log(err);
-    // },
-    // () => {
-    //    //console.log("finish search bar");
-    // }
-    // )
     this.http.get('http://hapi.fhir.org/baseDstu3/Patient', { params: params }).subscribe(res => {
-       //console.log("search-bar res is ", res);
-
       this.getDataSourceFromEntry(res["entry"]);
-
-
       this.service.ds_detector.next({ "ds_detector": "changed" });
-       //console.log("res is " + res + " service ds is " + this.service.ds + " searchbar component");
       this.router.navigate(["/patient"]);
     },
       err => {
-         //console.log("search-bar err is ", err);
       },
       () => {
-         //console.log("finally ()");
       })
   }
   getDataSourceFromEntry(entry): any {
     for (let i = 0; i < entry.length; i++) {
-      //entry[i]
       let patient = {};
       patient["id"] = entry[i]["resource"]["id"];
       if (entry[i]["resource"]["name"]) {
