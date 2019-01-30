@@ -14,12 +14,8 @@ export class AllergyintoleranceComponent implements OnInit {
   displayedColumns: any;
 
   constructor(private service: SharedService, private cd: ChangeDetectorRef) {
-    ////debugger;
     if (this.service.allergyIntolerance) {
-      ////debugger;
       let tmp_allergyIntolerance = this.service.allergyIntolerance["entry"];
-       //console.log(tmp_allergyIntolerance);
-
       if (tmp_allergyIntolerance) {
         for (let i = 0; i < tmp_allergyIntolerance.length; i++) {
           let obj = {};
@@ -31,11 +27,8 @@ export class AllergyintoleranceComponent implements OnInit {
           try {
             if (tmp_allergyIntolerance[i]["resource"]["clinicalStatus"]) {
               clinicalStatus = tmp_allergyIntolerance[i]["resource"]["clinicalStatus"];
-               //console.log("clinicalStatus is", clinicalStatus);
             }
-             //console.log("clinicalStatus is ", clinicalStatus);
             obj["clinicalStatus"] = clinicalStatus != null ? clinicalStatus : "N/A";
-             //console.log("reaction of loop allergyIntolerance component");
           } catch (error) {
             obj["clinicalStatus"] = "N/A";
           }
@@ -58,8 +51,6 @@ export class AllergyintoleranceComponent implements OnInit {
               sb+=reaction[i]["coding"][0]["display"] + " ";              
             }
             obj["reaction"] = sb != null ? sb : "N/A";
-             //console.log("reaction is", sb);
-             //console.log("reaction of loop allergyIntolerance component");
           } catch (error) {
             obj["reaction"] = "N/A";
           }

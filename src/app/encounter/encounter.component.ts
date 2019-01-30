@@ -15,21 +15,15 @@ export class EncounterComponent implements OnInit {
   displayedColumns: any;
 
   constructor(private service: SharedService, private cd: ChangeDetectorRef) {
-    ////debugger;
     if (this.service.encounter) {
-      ////debugger;
       let tmp_encounter = this.service.encounter["entry"];
-      // (tmp_encounter);
-
       if(tmp_encounter)
       {
         for (let i = 0; i < tmp_encounter.length; i++) {
-          ////debugger;
           let obj = {};
           try {
             let type = tmp_encounter[i]["resource"]["type"][0];
             let text = type["text"];
-            // ("text is ", text);
             obj["type"] = text!= ""?text:"N/A";
           } catch (error) {
             obj["type"] = "N/A";
@@ -43,7 +37,6 @@ export class EncounterComponent implements OnInit {
             if (tmp_encounter[i]["resource"]["period"]["start"]) {
               start = tmp_encounter[i]["resource"]["period"]["start"];
             }
-            // ("start is ", start);
             obj["start"] = start!= null?start:"N/A";
           } catch (error) {
             obj["start"] = "N/A";
@@ -54,15 +47,12 @@ export class EncounterComponent implements OnInit {
                 end = tmp_encounter[i]["resource"]["period"]["end"];
             }
             obj["end"] = end!= null?end:"N/A";
-            // ("end is", end);
           } catch (error) {
             obj["end"] = "N/A";
           }
           this.encounter.push(obj);
         }
-
         this.cd.markForCheck();
-        ////debugger;  
         this.displayedColumns = ["type", "start", "end"];
         this.dataSource = new MatTableDataSource<{}>(this.encounter);
       }
