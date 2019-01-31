@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,8 @@ export class SharedService {
   procedure: any;
   appointment: any;
   allergyIntolerance: any;
-
-  
+  //current patient
+  banner: any;
+  banner_msg = new BehaviorSubject<any>(1);  
   constructor() { }
 }

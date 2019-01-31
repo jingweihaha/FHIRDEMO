@@ -15,14 +15,20 @@ export class ConditionComponent implements OnInit {
 
   constructor(private service: SharedService, private cd: ChangeDetectorRef) {
     if (this.service.condition) {
+      //debugger;
       let tmp_condition = this.service.condition["entry"];
       if(tmp_condition)
       {
         for (let i = 0; i < tmp_condition.length; i++) {
           let obj = {};
           try {
+
+            let condition = tmp_condition[i]["resource"]["code"]["text"];
+            //console.log("condition is ", condition);
             let type = tmp_condition[i]["resource"]["severity"];
             let text = type["text"];
+            
+            obj["condition"] = condition;
             obj["severity"] = text!= null?text:"N/A";
           } catch (error) {
             obj["severity"] = "N/A";
@@ -59,7 +65,7 @@ export class ConditionComponent implements OnInit {
           this.condition.push(obj);
         }
         this.cd.markForCheck();
-        this.displayedColumns = ["severity", "onset", "abatement", "clinicalstatus"];
+        this.displayedColumns = ["condition", "severity", "onset", "clinicalstatus"];
         this.dataSource = new MatTableDataSource<{}>(this.condition);
       }
     }

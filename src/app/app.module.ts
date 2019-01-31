@@ -21,6 +21,7 @@ import { ConditionComponent } from './condition/condition.component';
 import { ProcedureComponent } from './procedure/procedure.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { AllergyintoleranceComponent } from './allergyintolerance/allergyintolerance.component';
+import { SortmedPipe } from './sortmed.pipe';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AllergyintoleranceComponent } from './allergyintolerance/allergyintoler
     ConditionComponent,
     ProcedureComponent,
     AppointmentComponent,
-    AllergyintoleranceComponent
+    AllergyintoleranceComponent,
+    SortmedPipe
   ],
   imports: [
     BrowserModule,

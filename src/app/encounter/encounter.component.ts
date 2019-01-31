@@ -37,7 +37,20 @@ export class EncounterComponent implements OnInit {
             if (tmp_encounter[i]["resource"]["period"]["start"]) {
               start = tmp_encounter[i]["resource"]["period"]["start"];
             }
+
+            start.sort((a:any, b:any) => {
+              if (a["med"].toLowerCase() < b["med"].toLowerCase()) {
+                return 1;
+              } else if (a["med"].toLowerCase() > b["med"].toLowerCase()) {
+                return -1;
+              } 
+              else {
+                return 0;
+              }
+            });
+
             obj["start"] = start!= null?start:"N/A";
+
           } catch (error) {
             obj["start"] = "N/A";
           }

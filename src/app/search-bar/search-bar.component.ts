@@ -48,6 +48,7 @@ export class SearchBarComponent implements OnInit {
   getDataSourceFromEntry(entry): any {
     for (let i = 0; i < entry.length; i++) {
       let patient = {};
+      patient["index"] = i+"";
       patient["id"] = entry[i]["resource"]["id"];
       if (entry[i]["resource"]["name"]) {
         patient["name"] = entry[i]["resource"]["name"][0]["given"] + " " + entry[i]["resource"]["name"][0]["family"];

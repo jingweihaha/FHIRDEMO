@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { SharedService } from '../shared.service';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-medicationstatement',
@@ -12,6 +12,7 @@ export class MedicationstatementComponent implements OnInit {
   medicationstatement =[];
   dataSource: MatTableDataSource<{}>;
   displayedColumns: any;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private service: SharedService, private cd: ChangeDetectorRef) {
     if (this.service.medicationstatement && this.service.medicationstatement.entry && (this.service.medicationstatement.entry.length > 0)) {
@@ -27,15 +28,15 @@ export class MedicationstatementComponent implements OnInit {
         }
         let med;
         try {
-          debugger;
+          // debugger;
           if (tmp_medicationstatements[i]["resource"]["medicationCodeableConcept"]) {
             med = tmp_medicationstatements[i]["resource"]["medicationCodeableConcept"];
-            obj["med"] = med["text"] != ""?med["text"]:"N/A";
+            obj["med"] = med["text"] != ""?med["text"].trim():"N/A";
 
           }
           else if (tmp_medicationstatements[i]["resource"]["medicationReference"]["display"]) {
             med = tmp_medicationstatements[i]["resource"]["medicationReference"]["display"];
-            obj["med"] = med != ""?med:"N/A";
+            obj["med"] = med != ""?med.trim():"N/A";
           }          
         } catch (error) {
           obj["med"] = "N/A"
@@ -43,12 +44,30 @@ export class MedicationstatementComponent implements OnInit {
         this.medicationstatement.push(obj);
       }
       this.cd.markForCheck();
+      
+      this.medicationstatement.sort((a:any, b:any) => {
+        if (a["med"].toLowerCase() < b["med"].toLowerCase()) {
+          return -1;
+        } else if (a["med"].toLowerCase() > b["med"].toLowerCase()) {
+          return 1;
+        } 
+        else {
+          return 0;
+        }
+      });
+      
       this.displayedColumns = ["med", "dosage"];
       this.dataSource = new MatTableDataSource<{}>(this.medicationstatement);
+      debugger;
+      this.dataSource.sort = this.sort;
     }
   }
 
   ngOnInit() {
-
+    
   }
+
+  // ngOnInit() {
+
+  // }
 }

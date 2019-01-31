@@ -60,7 +60,7 @@ export class AppointmentComponent implements OnInit {
           this.appointment.push(obj);
         }
         this.cd.markForCheck();
-        this.displayedColumns = ["status", "description", "start", "end"];
+        this.displayedColumns = ["status", "description", "start"];
         this.dataSource = new MatTableDataSource<{}>(this.appointment);
       }
     }

@@ -1,8 +1,9 @@
+Patient: {{banner | async}}
 <mat-tab-group (selectedTabChange)="onLinkClick($event)" >
-  <mat-tab label="Medication_Statement"> <app-medicationstatement></app-medicationstatement> </mat-tab>
+  <mat-tab label="Medication"> <app-medicationstatement></app-medicationstatement> </mat-tab>
   <mat-tab label="Encounter"> <app-encounter></app-encounter> </mat-tab>
+  <mat-tab label="Appointment"> <app-appointment></app-appointment> </mat-tab>
   <mat-tab label="Condition"> <app-condition></app-condition> </mat-tab>
   <mat-tab label="Procedure"> <app-procedure></app-procedure> </mat-tab>
-  <mat-tab label="Appointment"> <app-appointment></app-appointment> </mat-tab>
-  <mat-tab label="Allergyintolerance"> <app-allergyintolerance></app-allergyintolerance> </mat-tab>
+  <mat-tab label="Allergies"> <app-allergyintolerance></app-allergyintolerance> </mat-tab>
 </mat-tab-group>

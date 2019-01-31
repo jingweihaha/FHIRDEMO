@@ -16,6 +16,8 @@ export class PatientComponent implements OnInit {
   ds = [];
   displayedColumns: any;
   dataSource: any;
+  //current patient
+  // banner: any;
 
   constructor(private service: SharedService, private router: Router, private http: HttpClient, private ref: ChangeDetectorRef) {
     if ((this.service.ds) && (this.service.ds.length > 0)) {
@@ -31,8 +33,9 @@ export class PatientComponent implements OnInit {
 
   private refreshDS() {
     this.ds = this.service.ds;
-    this.displayedColumns = ['id', 'name', 'gender', 'birthDate', "address"];
+    this.displayedColumns = ['index','id', 'name', 'gender', 'birthDate', "address"];
     this.dataSource = new MatTableDataSource<{}>(this.ds);
+    // debugger;
   }
 
   ngOnInit() {
@@ -40,6 +43,14 @@ export class PatientComponent implements OnInit {
   }
 
   getRecord(a: any) {
+
+    this.service.banner = a;
+    this.service.banner_msg.next({"banner":"changed"});
+    //debugger;
+
+
+    //this.banner = this.service.banner["name"];
+    
     this.dataSource = null;
     let params = new HttpParams().set('patient', a.id).set('_pretty', 'true');
     let url_encounter = "http://hapi.fhir.org/baseDstu3/Encounter";

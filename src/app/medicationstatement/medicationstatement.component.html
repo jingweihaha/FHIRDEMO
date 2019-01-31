@@ -1,15 +1,15 @@
 <div class="mydiv">
-  <table *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table *ngIf="dataSource" mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="med">
-      <th mat-header-cell *matHeaderCellDef> MED </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> MED </th>
       <td mat-cell *matCellDef="let element"> {{element.med}} </td>
     </ng-container>
     <ng-container matColumnDef="dosage">
-      <th mat-header-cell *matHeaderCellDef> DOSAGE </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DOSAGE </th>
       <td mat-cell *matCellDef="let element"> {{element.dosage}} </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" mat-sort-header></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table> 
 </div>
