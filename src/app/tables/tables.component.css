@@ -1,5 +1,19 @@
 .mat-tab-label, .mat-tab-label-active{
     min-width: 0 !important;
     padding: 3px !important;
-    margin: 3px  !important;
+    margin: 3px  !important; 
+    background: white;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+    /* min-width: 25px !important;
+    max-width: 90px !important; */
+    /* padding: 5px; */
+    /* background-color: transparent; */
+    width: 110px;
+    color:white;
+    background:#4CAF50;
+    font-weight: 600;
+    border-color: 1px solid black;
 }

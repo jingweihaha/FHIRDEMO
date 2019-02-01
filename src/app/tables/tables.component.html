@@ -1,9 +1,14 @@
-Patient: {{banner | async}}
-<mat-tab-group (selectedTabChange)="onLinkClick($event)" >
-  <mat-tab label="Medication"> <app-medicationstatement></app-medicationstatement> </mat-tab>
-  <mat-tab label="Encounter"> <app-encounter></app-encounter> </mat-tab>
-  <mat-tab label="Appointment"> <app-appointment></app-appointment> </mat-tab>
-  <mat-tab label="Condition"> <app-condition></app-condition> </mat-tab>
-  <mat-tab label="Procedure"> <app-procedure></app-procedure> </mat-tab>
-  <mat-tab label="Allergies"> <app-allergyintolerance></app-allergyintolerance> </mat-tab>
-</mat-tab-group>
+<div class="alert alert-success" style="background: #4CAF50;color:white" >
+  <strong>Patient Information:</strong>  Name: {{banner_name | async}}  ID: {{banner_id | async}}  DOB: {{banner_dob | async}}
+</div>
+
+<div>
+    <mat-tab-group (selectedTabChange)="onLinkClick($event)" >
+        <mat-tab label="Medication"> <app-medicationstatement></app-medicationstatement> </mat-tab>
+        <mat-tab label="Encounter"> <app-encounter></app-encounter> </mat-tab>
+        <mat-tab label="Appointment"> <app-appointment></app-appointment> </mat-tab>
+        <mat-tab label="Condition"> <app-condition></app-condition> </mat-tab>
+        <mat-tab label="Procedure"> <app-procedure></app-procedure> </mat-tab>
+        <mat-tab label="Allergies"> <app-allergyintolerance></app-allergyintolerance> </mat-tab>
+      </mat-tab-group>
+</div>

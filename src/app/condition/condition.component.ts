@@ -9,7 +9,7 @@ import { SharedService } from '../shared.service';
 })
 export class ConditionComponent implements OnInit {
 
-  condition =[];
+  condition = [];
   dataSource: MatTableDataSource<{}>;
   displayedColumns: any;
 
@@ -17,21 +17,25 @@ export class ConditionComponent implements OnInit {
     if (this.service.condition) {
       //debugger;
       let tmp_condition = this.service.condition["entry"];
-      if(tmp_condition)
-      {
+      if (tmp_condition) {
         for (let i = 0; i < tmp_condition.length; i++) {
           let obj = {};
           try {
-
             let condition = tmp_condition[i]["resource"]["code"]["text"];
             //console.log("condition is ", condition);
             let type = tmp_condition[i]["resource"]["severity"];
             let text = type["text"];
-            
-            obj["condition"] = condition;
-            obj["severity"] = text!= null?text:"N/A";
+            obj["condition"] = condition == ""?"N/A":condition;
+            obj["severity"] = text != null ? text : "N/A";
           } catch (error) {
             obj["severity"] = "N/A";
+          }
+
+          try {
+            let condition = tmp_condition[i]["resource"]["code"]["text"];
+            obj["condition"] = condition == ""?"N/A":condition;
+          } catch (error) {
+            obj["condition"] = "N/A";
           }
 
           let onset;
@@ -41,7 +45,7 @@ export class ConditionComponent implements OnInit {
             if (tmp_condition[i]["resource"]["onsetDateTime"]) {
               onset = tmp_condition[i]["resource"]["onsetDateTime"];
             }
-            obj["onset"] = onset!= null?onset:"N/A";
+            obj["onset"] = onset != null ? onset : "N/A";
           } catch (error) {
             obj["onset"] = "N/A";
           }
@@ -49,7 +53,7 @@ export class ConditionComponent implements OnInit {
             if (tmp_condition[i]["resource"]["abatementDatetime"]) {
               abatement = tmp_condition[i]["resource"]["abatementDatetime"];
             }
-            obj["abatement"] = abatement!= null?abatement:"N/A";
+            obj["abatement"] = abatement != null ? abatement : "N/A";
           } catch (error) {
             obj["abatement"] = "N/A";
           }
@@ -58,12 +62,28 @@ export class ConditionComponent implements OnInit {
             if (tmp_condition[i]["resource"]["clinicalStatus"]) {
               clinicalstatus = tmp_condition[i]["resource"]["clinicalStatus"];
             }
-            obj["clinicalstatus"] = clinicalstatus!= null?clinicalstatus:"N/A";
+            obj["clinicalstatus"] = clinicalstatus != null ? clinicalstatus : "N/A";
           } catch (error) {
             obj["clinicalstatus"] = "N/A";
           }
           this.condition.push(obj);
         }
+
+        debugger;
+
+        this.condition.sort((a: any, b: any) => {
+          debugger;
+          if (a["condition"].toLowerCase() < b["condition"].toLowerCase()) {
+            return -1;
+          } else if (a["condition"].toLowerCase() > b["condition"].toLowerCase()) {
+            return 1;
+          }
+          else {
+            return 0;
+          }
+        });
+
+
         this.cd.markForCheck();
         this.displayedColumns = ["condition", "severity", "onset", "clinicalstatus"];
         this.dataSource = new MatTableDataSource<{}>(this.condition);
