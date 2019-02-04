@@ -35,7 +35,7 @@ export class SearchBarComponent implements OnInit {
     this.service.allergyIntolerance = null;
 
     let params = new HttpParams().set('name', this.patient_name).set('_pretty', 'true');
-    this.http.get('http://hapi.fhir.org/baseDstu3/Patient', { params: params }).subscribe(res => {
+    this.http.get('https://hapi.fhir.org/baseDstu3/Patient', { params: params }).subscribe(res => {
       this.getDataSourceFromEntry(res["entry"]);
       this.service.ds_detector.next({ "ds_detector": "changed" });
       this.router.navigate(["/patient"]);

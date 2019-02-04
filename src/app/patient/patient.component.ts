@@ -53,7 +53,7 @@ export class PatientComponent implements OnInit {
     
     this.dataSource = null;
     let params = new HttpParams().set('patient', a.id).set('_pretty', 'true');
-    let url_encounter = "http://hapi.fhir.org/baseDstu3/Encounter";
+    let url_encounter = "https://hapi.fhir.org/baseDstu3/Encounter";
     this.http.get(url_encounter, { params: params }).subscribe(res => {
       this.service.encounter = res;
     },
@@ -64,7 +64,7 @@ export class PatientComponent implements OnInit {
     )
 
 
-    let url_condition = "http://hapi.fhir.org/baseDstu3/Condition";
+    let url_condition = "https://hapi.fhir.org/baseDstu3/Condition";
     this.http.get(url_condition, { params: params }).subscribe(res => {
       this.service.condition = res;
     },
@@ -75,7 +75,7 @@ export class PatientComponent implements OnInit {
     )
 
 
-    let url_procedure = "http://hapi.fhir.org/baseDstu3/Procedure";
+    let url_procedure = "https://hapi.fhir.org/baseDstu3/Procedure";
     this.http.get(url_procedure, { params: params }).subscribe(res => {
       this.service.procedure = res;
     },
@@ -85,7 +85,7 @@ export class PatientComponent implements OnInit {
       }
     )
 
-    let url_appointment = "http://hapi.fhir.org/baseDstu3/Appointment";
+    let url_appointment = "https://hapi.fhir.org/baseDstu3/Appointment";
     this.http.get(url_appointment, { params: params }).subscribe(res => {
       this.service.appointment = res;
     },
@@ -95,7 +95,7 @@ export class PatientComponent implements OnInit {
       }
     )
 
-    let url_AllergyIntolerance = "http://hapi.fhir.org/baseDstu3/AllergyIntolerance";
+    let url_AllergyIntolerance = "https://hapi.fhir.org/baseDstu3/AllergyIntolerance";
     this.http.get(url_AllergyIntolerance, { params: params }).subscribe(res => {
       this.service.allergyIntolerance = res;
     },
@@ -105,7 +105,7 @@ export class PatientComponent implements OnInit {
       }
     )
 
-    let url = "http://hapi.fhir.org/baseDstu3/MedicationStatement";
+    let url = "https://hapi.fhir.org/baseDstu3/MedicationStatement";
     this.http.get(url, { params: params }).subscribe(res => {
       this.service.medicationstatement = res;
     },

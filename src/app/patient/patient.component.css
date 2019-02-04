@@ -6,10 +6,6 @@
     padding: 1vw !important;
   }
 
-/* .mat-header-cell { 
-       text-align: center; 
-  } */
-
 .matHeaderCellDef {
     text-align: center;
   }
@@ -25,11 +21,6 @@ th.mat-header-cell {
     padding-left: 1vw !important;
   }
 
-/* .mat-cell {
-    text-align: center;
-    border: 1px solid #ddd;
-  } */
-
 table {
     margin: auto;
     /*width: 100vw;*/
@@ -37,7 +28,6 @@ table {
 
 .mydiv {
   margin: 5vh;
-  /* border: 2px solid red; */
 }
 
 .mat-row:nth-child(even){
@@ -49,8 +39,6 @@ table {
   }
 
 .mat-cell, .mat-header-cell{
-  /* text-align: center; */
-  /* border: 1px solid grey; */
   border: 1px solid #ddd;
   min-height: 48px;
   }
@@ -62,3 +50,18 @@ table {
   .mat-row:hover {
     background-color: #ddd;
  }
+
+ @media (max-width: 760px){ 
+  td.mat-cell {
+    font-size: 7px;
+  }
+  th.mat-header-cell {
+    font-size: 6px
+  }
+}
+
+table{
+  /* margin-left: -25px; */
+  margin:auto;
+}
+  

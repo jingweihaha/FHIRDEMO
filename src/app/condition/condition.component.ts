@@ -69,10 +69,10 @@ export class ConditionComponent implements OnInit {
           this.condition.push(obj);
         }
 
-        debugger;
+        // debugger;
 
         this.condition.sort((a: any, b: any) => {
-          debugger;
+          // debugger;
           if (a["condition"].toLowerCase() < b["condition"].toLowerCase()) {
             return -1;
           } else if (a["condition"].toLowerCase() > b["condition"].toLowerCase()) {

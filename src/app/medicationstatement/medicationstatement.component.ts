@@ -58,7 +58,7 @@ export class MedicationstatementComponent implements OnInit {
       
       this.displayedColumns = ["med", "dosage"];
       this.dataSource = new MatTableDataSource<{}>(this.medicationstatement);
-      debugger;
+      // debugger;
       this.dataSource.sort = this.sort;
     }
   }

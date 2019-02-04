@@ -1,0 +1,18 @@
+{
+  "serverless": {
+    "provider": "aws",
+    "project": "FHIRdemo",
+    "skipInstall": true,
+    "directory": ".",
+    "serverless": {
+      "aws": {},
+      "gcloud": {}
+    }
+  },
+  "universal": {
+    "project": "FHIRdemo",
+    "skipInstall": false,
+    "directory": ".",
+    "http": true
+  }
+}

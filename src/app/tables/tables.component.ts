@@ -33,9 +33,9 @@ export class TablesComponent implements OnInit {
   }
 
   onLinkClick(a: MatTabChangeEvent) {
-    console.log('event => ', a);
-    console.log('index => ', a.index);
-    console.log('tab => ', a.tab);
+    // console.log('event => ', a);
+    // console.log('index => ', a.index);
+    // console.log('tab => ', a.tab);
   }
 
 }

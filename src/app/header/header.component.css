@@ -1,18 +1,8 @@
-/* .mytitle{
-    margin-right: auto!important;
-    margin-left: 20px;
-} */
 
-/* .myform{
-    margin-left: -100px;
-} */
-
-/* a .nav-link{
-   margin-left: auto;
-} */
 
 .mytitlecolor{
     background: #087ca7;
+    /* min-width: 70vw; */
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
@@ -27,4 +17,38 @@ button:hover {
     background-color: orangered; /* Green */
 }
 
-   
+
+@media (min-width: 320px){ 
+    .navbar-expand-lg .navbar-collapse {
+        display: flex!important;
+        flex-basis: auto;
+    }
+
+    .navbar-toggler {
+        display: none;
+    }
+
+    .mytitlecolor{
+        background: #087ca7;
+        min-width: 100vw;
+    }
+}
+
+/*
+    responsive with screen size
+*/
+
+  
+  @media screen and (min-width: 992px) {
+    .mytitlecolor{
+        background: #087ca7;
+        min-width: 100vw;
+    }
+  } 
+
+  @media screen and (min-width: 200px) {
+    .mytitlecolor{
+        background: #087ca7;
+        /* min-width: 120vw; */
+    }
+  }
