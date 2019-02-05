@@ -73,7 +73,6 @@ export class ProcedureComponent {
         this.displayedColumns = ["start", "reasonReference", "procedure"];
         this.dataSource = new MatTableDataSource<{}>(this.procedure);
       }
-
       else{
         this.nodata = true;
       }

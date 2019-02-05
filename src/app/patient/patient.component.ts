@@ -33,7 +33,7 @@ export class PatientComponent implements OnInit {
 
   private refreshDS() {
     this.ds = this.service.ds;
-    this.displayedColumns = ['index','id', 'name', 'gender', 'birthDate', "address"];
+    this.displayedColumns = ['index', 'id', 'name', 'gender', 'birthDate', "address"];
     this.dataSource = new MatTableDataSource<{}>(this.ds);
     // debugger;
   }
@@ -45,12 +45,12 @@ export class PatientComponent implements OnInit {
   getRecord(a: any) {
 
     this.service.banner = a;
-    this.service.banner_msg.next({"banner":"changed"});
+    this.service.banner_msg.next({ "banner": "changed" });
     //debugger;
 
 
     //this.banner = this.service.banner["name"];
-    
+
     this.dataSource = null;
     let params = new HttpParams().set('patient', a.id).set('_pretty', 'true');
     let url_encounter = "https://hapi.fhir.org/baseDstu3/Encounter";
@@ -58,6 +58,7 @@ export class PatientComponent implements OnInit {
       this.service.encounter = res;
     },
       err => {
+        console.log("encounter error ", err);
       },
       () => {
       }
@@ -69,6 +70,7 @@ export class PatientComponent implements OnInit {
       this.service.condition = res;
     },
       err => {
+        console.log("condition error ", err);
       },
       () => {
       }
@@ -80,6 +82,7 @@ export class PatientComponent implements OnInit {
       this.service.procedure = res;
     },
       err => {
+        console.log("procedure error ", err);
       },
       () => {
       }
@@ -88,8 +91,10 @@ export class PatientComponent implements OnInit {
     let url_appointment = "https://hapi.fhir.org/baseDstu3/Appointment";
     this.http.get(url_appointment, { params: params }).subscribe(res => {
       this.service.appointment = res;
+      this.service.appointment_msg.next({"app":"app"});
     },
       err => {
+        console.log("appointment error ", err);
       },
       () => {
       }
@@ -100,6 +105,7 @@ export class PatientComponent implements OnInit {
       this.service.allergyIntolerance = res;
     },
       err => {
+        console.log("allergy error ", err);
       },
       () => {
       }
@@ -107,11 +113,15 @@ export class PatientComponent implements OnInit {
 
     let url = "https://hapi.fhir.org/baseDstu3/MedicationStatement";
     this.http.get(url, { params: params }).subscribe(res => {
+      debugger;
       this.service.medicationstatement = res;
+      this.service.med_msg.next({"med":"med"});
     },
       err => {
+        console.log("medication error ", err);
       },
       () => {
+        console.log("medication finally");
         this.router.navigate(['/tables']);
       }
     )

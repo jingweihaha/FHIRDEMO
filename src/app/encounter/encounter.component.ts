@@ -13,11 +13,12 @@ export class EncounterComponent implements OnInit {
   encounter =[];
   dataSource: MatTableDataSource<{}>;
   displayedColumns: any;
+  nodata: boolean;
 
   constructor(private service: SharedService, private cd: ChangeDetectorRef) {
     if (this.service.encounter) {
       let tmp_encounter = this.service.encounter["entry"];
-      if(tmp_encounter)
+      if(tmp_encounter && tmp_encounter.length > 0 )
       {
         for (let i = 0; i < tmp_encounter.length; i++) {
           let obj = {};
@@ -68,6 +69,9 @@ export class EncounterComponent implements OnInit {
         this.cd.markForCheck();
         this.displayedColumns = ["type", "start", "end"];
         this.dataSource = new MatTableDataSource<{}>(this.encounter);
+      }
+      else{
+        this.nodata = true;
       }
     }
   }

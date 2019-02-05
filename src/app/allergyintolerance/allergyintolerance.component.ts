@@ -12,11 +12,12 @@ export class AllergyintoleranceComponent implements OnInit {
   allergyIntolerance = [];
   dataSource: MatTableDataSource<{}>;
   displayedColumns: any;
+  nodata: boolean;
 
   constructor(private service: SharedService, private cd: ChangeDetectorRef) {
     if (this.service.allergyIntolerance) {
       let tmp_allergyIntolerance = this.service.allergyIntolerance["entry"];
-      if (tmp_allergyIntolerance) {
+      if (tmp_allergyIntolerance && tmp_allergyIntolerance.length > 0 ) {
         for (let i = 0; i < tmp_allergyIntolerance.length; i++) {
           let obj = {};
 
@@ -59,6 +60,9 @@ export class AllergyintoleranceComponent implements OnInit {
         this.cd.markForCheck();
         this.displayedColumns = ["clinicalStatus", "display", "reaction"];
         this.dataSource = new MatTableDataSource<{}>(this.allergyIntolerance);
+      }
+      else{
+        this.nodata = true;
       }
     }
   }

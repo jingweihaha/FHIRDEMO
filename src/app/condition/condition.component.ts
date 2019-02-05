@@ -12,83 +12,172 @@ export class ConditionComponent implements OnInit {
   condition = [];
   dataSource: MatTableDataSource<{}>;
   displayedColumns: any;
+  nodata: boolean;
 
   constructor(private service: SharedService, private cd: ChangeDetectorRef) {
     if (this.service.condition) {
       //debugger;
       let tmp_condition = this.service.condition["entry"];
-      if (tmp_condition) {
-        for (let i = 0; i < tmp_condition.length; i++) {
-          let obj = {};
-          try {
-            let condition = tmp_condition[i]["resource"]["code"]["text"];
-            //console.log("condition is ", condition);
-            let type = tmp_condition[i]["resource"]["severity"];
-            let text = type["text"];
-            obj["condition"] = condition == ""?"N/A":condition;
-            obj["severity"] = text != null ? text : "N/A";
-          } catch (error) {
-            obj["severity"] = "N/A";
-          }
 
-          try {
-            let condition = tmp_condition[i]["resource"]["code"]["text"];
-            obj["condition"] = condition == ""?"N/A":condition;
-          } catch (error) {
-            obj["condition"] = "N/A";
-          }
-
-          let onset;
-          let abatement;
-          let clinicalstatus;
-          try {
-            if (tmp_condition[i]["resource"]["onsetDateTime"]) {
-              onset = tmp_condition[i]["resource"]["onsetDateTime"];
+      if (tmp_condition && tmp_condition.length > 0) {
+        this.nodata = false;
+        if (tmp_condition) {
+          for (let i = 0; i < tmp_condition.length; i++) {
+            let obj = {};
+            try {
+              let condition = tmp_condition[i]["resource"]["code"]["text"];
+              //console.log("condition is ", condition);
+              let type = tmp_condition[i]["resource"]["severity"];
+              let text = type["text"];
+              obj["condition"] = condition == "" ? "N/A" : condition;
+              obj["severity"] = text != null ? text : "N/A";
+            } catch (error) {
+              obj["severity"] = "N/A";
             }
-            obj["onset"] = onset != null ? onset : "N/A";
-          } catch (error) {
-            obj["onset"] = "N/A";
-          }
-          try {
-            if (tmp_condition[i]["resource"]["abatementDatetime"]) {
-              abatement = tmp_condition[i]["resource"]["abatementDatetime"];
+
+            try {
+              let condition = tmp_condition[i]["resource"]["code"]["text"];
+              obj["condition"] = condition == "" ? "N/A" : condition;
+            } catch (error) {
+              obj["condition"] = "N/A";
             }
-            obj["abatement"] = abatement != null ? abatement : "N/A";
-          } catch (error) {
-            obj["abatement"] = "N/A";
-          }
 
-          try {
-            if (tmp_condition[i]["resource"]["clinicalStatus"]) {
-              clinicalstatus = tmp_condition[i]["resource"]["clinicalStatus"];
+            let onset;
+            let abatement;
+            let clinicalstatus;
+            try {
+              if (tmp_condition[i]["resource"]["onsetDateTime"]) {
+                onset = tmp_condition[i]["resource"]["onsetDateTime"];
+              }
+              obj["onset"] = onset != null ? onset : "N/A";
+            } catch (error) {
+              obj["onset"] = "N/A";
             }
-            obj["clinicalstatus"] = clinicalstatus != null ? clinicalstatus : "N/A";
-          } catch (error) {
-            obj["clinicalstatus"] = "N/A";
+            try {
+              if (tmp_condition[i]["resource"]["abatementDatetime"]) {
+                abatement = tmp_condition[i]["resource"]["abatementDatetime"];
+              }
+              obj["abatement"] = abatement != null ? abatement : "N/A";
+            } catch (error) {
+              obj["abatement"] = "N/A";
+            }
+
+            try {
+              if (tmp_condition[i]["resource"]["clinicalStatus"]) {
+                clinicalstatus = tmp_condition[i]["resource"]["clinicalStatus"];
+              }
+              obj["clinicalstatus"] = clinicalstatus != null ? clinicalstatus : "N/A";
+            } catch (error) {
+              obj["clinicalstatus"] = "N/A";
+            }
+            this.condition.push(obj);
           }
-          this.condition.push(obj);
-        }
 
-        // debugger;
-
-        this.condition.sort((a: any, b: any) => {
           // debugger;
-          if (a["condition"].toLowerCase() < b["condition"].toLowerCase()) {
-            return -1;
-          } else if (a["condition"].toLowerCase() > b["condition"].toLowerCase()) {
-            return 1;
-          }
-          else {
-            return 0;
-          }
-        });
 
-
-        this.cd.markForCheck();
-        this.displayedColumns = ["condition", "severity", "onset", "clinicalstatus"];
-        this.dataSource = new MatTableDataSource<{}>(this.condition);
+          this.condition.sort((a: any, b: any) => {
+            // debugger;
+            if (a["condition"].toLowerCase() < b["condition"].toLowerCase()) {
+              return -1;
+            } else if (a["condition"].toLowerCase() > b["condition"].toLowerCase()) {
+              return 1;
+            }
+            else {
+              return 0;
+            }
+          });
+          this.cd.markForCheck();
+          this.displayedColumns = ["condition", "severity", "onset", "clinicalstatus"];
+          this.dataSource = new MatTableDataSource<{}>(this.condition);
+        }
       }
     }
+
+    this.service.condition_msg.subscribe(res => {
+
+      if (res['condition'] == "condition") {
+        if (this.service.condition) {
+          let tmp_condition = this.service.condition["entry"];
+          if (tmp_condition && tmp_condition.length > 0) {
+            this.nodata = false;
+            if (tmp_condition) {
+              for (let i = 0; i < tmp_condition.length; i++) {
+                let obj = {};
+                try {
+                  let condition = tmp_condition[i]["resource"]["code"]["text"];
+                  let type = tmp_condition[i]["resource"]["severity"];
+                  let text = type["text"];
+                  obj["condition"] = condition == "" ? "N/A" : condition;
+                  obj["severity"] = text != null ? text : "N/A";
+                } catch (error) {
+                  obj["severity"] = "N/A";
+                }
+
+                try {
+                  let condition = tmp_condition[i]["resource"]["code"]["text"];
+                  obj["condition"] = condition == "" ? "N/A" : condition;
+                } catch (error) {
+                  obj["condition"] = "N/A";
+                }
+
+                let onset;
+                let abatement;
+                let clinicalstatus;
+                try {
+                  if (tmp_condition[i]["resource"]["onsetDateTime"]) {
+                    onset = tmp_condition[i]["resource"]["onsetDateTime"];
+                  }
+                  obj["onset"] = onset != null ? onset : "N/A";
+                } catch (error) {
+                  obj["onset"] = "N/A";
+                }
+                try {
+                  if (tmp_condition[i]["resource"]["abatementDatetime"]) {
+                    abatement = tmp_condition[i]["resource"]["abatementDatetime"];
+                  }
+                  obj["abatement"] = abatement != null ? abatement : "N/A";
+                } catch (error) {
+                  obj["abatement"] = "N/A";
+                }
+
+                try {
+                  if (tmp_condition[i]["resource"]["clinicalStatus"]) {
+                    clinicalstatus = tmp_condition[i]["resource"]["clinicalStatus"];
+                  }
+                  obj["clinicalstatus"] = clinicalstatus != null ? clinicalstatus : "N/A";
+                } catch (error) {
+                  obj["clinicalstatus"] = "N/A";
+                }
+                this.condition.push(obj);
+              }
+
+              this.condition.sort((a: any, b: any) => {
+                if (a["condition"].toLowerCase() < b["condition"].toLowerCase()) {
+                  return -1;
+                } else if (a["condition"].toLowerCase() > b["condition"].toLowerCase()) {
+                  return 1;
+                }
+                else {
+                  return 0;
+                }
+              });
+              this.cd.markForCheck();
+              this.displayedColumns = ["condition", "severity", "onset", "clinicalstatus"];
+              this.dataSource = new MatTableDataSource<{}>(this.condition);
+            }
+            else {
+              this.nodata = true;
+            }
+          }
+          else {
+            this.nodata = true;
+          }
+        }
+        else {
+          this.nodata = true;
+        }
+      }
+    })
   }
 
   ngOnInit() {

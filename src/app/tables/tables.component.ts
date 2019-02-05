@@ -17,25 +17,21 @@ export class TablesComponent implements OnInit {
   banner_id : Observable<any>|null;
   banner_dob : Observable<any>|null;
 
-  constructor(private service: SharedService, private ref: ChangeDetectorRef) {
+  constructor(private service: SharedService) {
 
     this.service.banner_msg.subscribe(res => {
-      //debugger;
+      debugger;
       console.log("res is " ,res);
-      this.banner_name = of(this.service.banner["name"]);
-      this.banner_id = of(this.service.banner["id"]);
-      this.banner_dob = of(this.service.banner["birthDate"]);
-      // this.service.banner["name"];
+      if(this.service.banner)
+      {
+        this.banner_name = of(this.service.banner["name"]);
+        this.banner_id = of(this.service.banner["id"]);
+        this.banner_dob = of(this.service.banner["birthDate"]);
+      }
     })
   }
 
   ngOnInit() {
-  }
-
-  onLinkClick(a: MatTabChangeEvent) {
-    // console.log('event => ', a);
-    // console.log('index => ', a.index);
-    // console.log('tab => ', a.tab);
   }
 
 }

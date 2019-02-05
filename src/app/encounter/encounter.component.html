@@ -1,4 +1,4 @@
-<div class="mydiv">
+<div class="mydiv" *ngIf="!nodata">
   <table *ngIf="dataSource" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="start">
       <th mat-header-cell *matHeaderCellDef> Encounter Date </th>
@@ -17,4 +17,8 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+</div>
+
+<div class="mydiv" *ngIf="nodata">
+  No Records Found
 </div>
