@@ -94,7 +94,6 @@ export class ConditionComponent implements OnInit {
     }
 
     this.service.condition_msg.subscribe(res => {
-
       if (res['condition'] == "condition") {
         if (this.service.condition) {
           let tmp_condition = this.service.condition["entry"];

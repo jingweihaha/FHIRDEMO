@@ -68,6 +68,7 @@ export class PatientComponent implements OnInit {
     let url_condition = "https://hapi.fhir.org/baseDstu3/Condition";
     this.http.get(url_condition, { params: params }).subscribe(res => {
       this.service.condition = res;
+      this.service.condition_msg.next({"condition":"condition"});
     },
       err => {
         console.log("condition error ", err);

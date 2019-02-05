@@ -24,6 +24,8 @@ export class SharedService {
   med_msg = new BehaviorSubject<any>(1);  
   appointment_msg = new BehaviorSubject<any>(1);  
   condition_msg = new BehaviorSubject<any>(1);  
-
+  procedure_msg = new BehaviorSubject<any>(1);
+  allergy_msg = new BehaviorSubject<any>(1);
+  
   constructor() { }
 }
